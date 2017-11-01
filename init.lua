@@ -34,12 +34,13 @@ if decay then
 		  action = function(pos, node)
 		  
 			  local cpos = ({x=pos.x, y = pos.y + 1, z = pos.z})
-			  
-			  if minetest.get_node_light(cpos, nil) > 8 then
-				  minetest.dig_node(pos)
-				  return
+			  local check = minetest.get_node_light(cpos, nil)
+			  if check then
+				if check > 8 then
+					minetest.dig_node(pos)
+					return
+				end
 			  end
-			  
 		  end
 	  })
 end
